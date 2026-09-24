@@ -20,6 +20,10 @@ Classical cryptanalysis. These notes explain why five classroom ciphers still le
 
 The six lines use five ciphers: Caesar, affine, Vigenère, and Playfair once each, and a one-time pad twice, both times with the same key.
 
+默认示例是第 80 组：`texts/ciphertexts_80.txt`。下文的行号、IC 和辨认结果都指这一份。第 0 组只是作业自带的对照，不是这份笔记的例子。
+
+The default example is group 80: `texts/ciphertexts_80.txt`. Line numbers, IC values, and identifications below refer to that file. Group 0 is only the handout’s worked check, not the example used here.
+
 ## 五种密码
 
 明文先被收成只含 `A`–`Z` 的大写字母：字母转成大写，空格、逗号、句号全部删掉。下面的加密都作用在这条字母串上。
@@ -112,7 +116,16 @@ OTP is outside this table. Its alphabet includes digits, so its IC is not compar
 
 ## 怎样把六行对上号
 
-不需要先求出密钥。
+以第 80 组为例。不需要先求出密钥。
+
+| 行 | 密码 | 依据 |
+| --- | --- | --- |
+| 1 | Playfair | 唯一没有 `J` 的字母行 |
+| 2 | Caesar 或仿射 | IC \(\times 26 = 1.79\)，靠近英文 1.73 |
+| 3 | OTP | 含 Base32 数字 `2`–`7` |
+| 4 | OTP | 含 Base32 数字 `2`–`7` |
+| 5 | Caesar 或仿射 | IC \(\times 26 = 1.68\)，靠近英文 1.73 |
+| 6 | Vigenère | IC \(\times 26 = 1.12\)，三行里离 1.73 最远、最接近随机 1.00 |
 
 - **含数字 `2`–`7` 的两行是 OTP。** 只有 Base32 会写出这些数字。作业也说明 OTP 用了两次。
 - **字母行里唯一没有 `J` 的那一行是 Playfair。** 密钥和明文都把 `J` 并进了 `I`。其余只含字母的行都会出现 `J`。
@@ -121,7 +134,16 @@ OTP is outside this table. Its alphabet includes digits, so its IC is not compar
 
 ## How the six lines are told apart
 
-The key is not required.
+Group 80 is the default example. The key is not required.
+
+| Line | Cipher | Why |
+| --- | --- | --- |
+| 1 | Playfair | Only letter-only line with no `J` |
+| 2 | Caesar or affine | IC \(\times 26 = 1.79\), near English 1.73 |
+| 3 | OTP | Contains Base32 digits `2`–`7` |
+| 4 | OTP | Contains Base32 digits `2`–`7` |
+| 5 | Caesar or affine | IC \(\times 26 = 1.68\), near English 1.73 |
+| 6 | Vigenère | IC \(\times 26 = 1.12\), farthest from 1.73 and closest to random 1.00 |
 
 - **The two lines that contain digits `2`–`7` are the OTP.** Only Base32 writes those digits. The handout also states that the OTP was used twice.
 - **The only all-letter line with no `J` is Playfair.** Both the key and the plaintext fold `J` into `I`. The other letter-only lines contain `J`.
@@ -135,7 +157,7 @@ The key is not required.
 3. 每个小组随机抽六段，分别用上面的密码加密。Caesar 的移位、仿射的 \((a, b)\)、Vigenère 的英文单词、Playfair 的 25 字母排列都是随机抽的。OTP 的密钥是伪随机的，并且在两段明文上重复使用。
 4. 六行密文的顺序是打乱的。Caesar 可以出现在任意一行。
 
-第 0 组没有分给任何人，只作对照：`plaintexts_0.txt` 的第 \(j\) 行，用 `ciphers_and_keys_0.txt` 的第 \(j\) 行加密，得到 `ciphertexts_0.txt` 的第 \(j\) 行。
+这份笔记默认用第 80 组：打开 `texts/ciphertexts_80.txt`，上面的行号就是这一份的 1–6 行。第 0 组没有分给任何人，只是作业自带的对照：`plaintexts_0.txt` 的第 \(j\) 行，用 `ciphers_and_keys_0.txt` 的第 \(j\) 行加密，得到 `ciphertexts_0.txt` 的第 \(j\) 行。
 
 ## Where the plaintext comes from
 
@@ -144,15 +166,16 @@ The key is not required.
 3. Each group receives six plaintexts chosen at random and encrypted with the ciphers above. The Caesar shift, the affine pair \((a, b)\), the Vigenère word, and the 25-letter Playfair permutation are sampled at random. The OTP key is pseudorandom and is reused on two plaintexts.
 4. The six ciphertext lines are written in a shuffled order. Caesar may sit on any line.
 
-Group 0 is unassigned and is only a worked example: line \(j\) of `plaintexts_0.txt`, encrypted with line \(j\) of `ciphers_and_keys_0.txt`, is line \(j\) of `ciphertexts_0.txt`.
+This write-up defaults to group 80: open `texts/ciphertexts_80.txt`; the line numbers above are that file’s six lines. Group 0 is unassigned and is only the handout’s check: line \(j\) of `plaintexts_0.txt`, encrypted with line \(j\) of `ciphers_and_keys_0.txt`, is line \(j\) of `ciphertexts_0.txt`.
 
 ## 文件
 
 | 路径 | 内容 |
 | --- | --- |
 | `a1-cpen442.pdf` | 作业说明 |
-| `plaintexts_0.txt` | 第 0 组明文示例 |
-| `ciphers_and_keys_0.txt` | 第 0 组密码名和密钥 |
-| `ciphertexts_0.txt` | 第 0 组密文示例 |
+| `texts/ciphertexts_80.txt` | **默认示例**：第 80 组密文 |
+| `plaintexts_0.txt` | 第 0 组明文（作业对照，不是默认例子） |
+| `ciphers_and_keys_0.txt` | 第 0 组密码名和密钥（作业对照） |
+| `ciphertexts_0.txt` | 第 0 组密文（作业对照） |
 | `texts/` | 各小组的密文文件 |
 | `submission/` | 解答稿和字母频率图 |
