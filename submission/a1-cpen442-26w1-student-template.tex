@@ -1,0 +1,207 @@
+% CPEN 442 -- Assignment 1 answer template (optional).
+% Fill in your name(s) and answers below, compile, and submit the PDF as a1.pdf.
+% You do not have to use LaTeX: any readable PDF is fine.
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{seqsplit}
+\usepackage[T1]{fontenc}
+
+\definecolor{aliceblue}{rgb}{0.7, 1, 1}
+\definecolor{background}{rgb}{1, 0.98, 0.95}
+
+\lstset{frame=tb, language=Python, showstringspaces=false, columns=flexible,
+  basicstyle={\small\ttfamily}, breaklines=true, backgroundcolor=\color{background}}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{\baselineskip}
+
+\newcounter{question}
+\newcommand{\question}[1]{\refstepcounter{question}%
+  \textbf{\colorbox{aliceblue}{[#1 pts]} Question \arabic{question}}}
+
+% Box to write each answer in. It grows with its content.
+\newtcolorbox{answer}{colback=white, colframe=black, boxrule=0.4pt,
+  sharp corners, breakable}
+
+\begin{document}
+
+\begin{center}
+    THE UNIVERSITY OF BRITISH COLUMBIA\\
+    Electrical and Computer Engineering Department\\[\baselineskip]
+    {\bf CPEN 442\hfill Introduction to Cybersecurity\hfill Winter Term 1, 2026}
+    \vspace{1cm}
+
+    {\sc \Large Assignment 1: Ancient Crypto}
+\end{center}
+
+% One or two students. Delete the second row if you worked alone.
+\begin{tabularx}{\textwidth}{|X|l|}
+    \hline
+    \rowcolor{gray!15} \textbf{Name} & \textbf{Student number} \\
+    \hline
+    Chongkai (Lucas) Lyu & 30349559 \\
+    \hline
+    Leyang Gao & ? \\
+    \hline
+\end{tabularx}
+
+\textbf{Canvas assignment group number:} ?
+
+\section{The Index of Coincidence (IC)}
+
+\question{20} For each of Caesar, affine, Vigen{\`e}re, and Playfair, is the IC of the ciphertext expected to be higher, lower, or equal to the plaintext's IC? Explain why.
+
+\begin{answer}
+    \textbf{Caesar:} equal
+
+    \textbf{Explanation:}
+    Caesar cipher shifts every letter by a fixed number. Since each plaintext letter is mapped to exactly one ciphertext letter, the letter frequencies remain unchanged, and therefore the IC stays the same.
+
+    \bigskip
+    \textbf{Affine:} equal
+
+    \textbf{Explanation:}
+    Affine cipher uses a one-to-one substitution, mapping each plaintext letter to a unique ciphertext letter. This preserves the letter frequency distribution, so the IC remains unchanged. This mapping is a permutation of the alphabet.
+
+    \bigskip
+    \textbf{Vigen{\`e}re:} lower
+
+    \textbf{Explanation:}
+    Vigen{\`e}re cipher uses different shifts depending on the position of the letter in the repeating key. Therefore, the same plaintext letter can be encrypted into different ciphertext letters, making the letter frequency distribution more uniform and generally reducing the IC. If the key length is 1, Vigen{\`e}re reduces to Caesar and the IC is unchanged.
+
+    \bigskip
+    \textbf{Playfair:} lower
+
+    \textbf{Explanation:}
+    Playfair cipher encrypts pairs of letters rather than individual letters. The encryption of each letter depends on the other letter in its pair. This disrupts the original single-letter frequency distribution, making it generally more uniform and reducing the expected IC.
+\end{answer}
+
+\clearpage
+\section{Detecting Ciphers}
+
+\question{30} Without breaking them, which line of \texttt{ciphertexts\_$i$.txt} corresponds to which cipher? Explain how you figured out each one.
+
+\begin{answer}
+    The six lines of \texttt{ciphertexts\_80.txt}:
+
+    \begingroup
+    \setlength{\parindent}{0pt}%
+    \setlength{\parskip}{0pt}%
+    \scriptsize\ttfamily
+    \noindent 1)\ \seqsplit{PRWAKPWAGBQYBHDWPSNQPOWKOZZQYCINQDQMAHFZMQMUZPDPIUMQLFNBRLONCSYCHUQBRLPGBOGPRGDPTVQWHABAGPWQBQHVHVMGKFRGXPKMGPHUVYLMLFSMBNKFHVVUMQTDPSYCWBUMKXKFZNQZRXHWCLBWHRQDVUMFTQKLDPVCDFOBUIBQGCXHBQSRESMYOMUKDPYPDPTVDPNUXQQBBEHPONFZOZKOZNQLONCHWKOLUZGPYVBUMQHKONVSVURXPVCSFUVUMQTDPSDPZAOGUMMQHTBOHGHDXKNVGPHTMQMU}\par
+    \vspace{\baselineskip}
+    \noindent 2)\ \seqsplit{GZCKPFCSAPCRWSGHFOBGWHWCBOBRAOHIFWHMKWHVWHGQOZARSASOBCFOBRSJCZJWBUOPWZWHWSGWHRSACBGHFOHSGHVOHUFCKHVFSEIWFSGPCHVORODHOHWCBOBROQQSDHOBQSGZCKPFCHSOQVSGHVOHQVOBUSQOBPFWBUBSKGHFSBUHVGWHFSTZSQHGHVSWADCFHOBQSCTDOHWSBQSOBRHWAWBUGVCKWBUHVOHHFISRSJSZCDASBHPOZOBQSGQCBHWBIWHMKWHVHFOBGTCFAOHWCB}\par
+    \vspace{\baselineskip}
+    \noindent 3)\ \seqsplit{B3P3R6IFG5Q7SOUUMDKFFFMPZ2SKKXHYT2F6DZB2EFSXDTI3WEI542Q4X4UYYPVMIDOZW4MBXXDUGNGNEILQLXNMADQQ55YIQT3JD5Y4QOLOPJRMIS3OCV2YENQFMJP4IAJINJIJP7LYM2RWQIKZEZL4K7PFVYJOS7EVWQ6AL4T6B34HHJ2OC7PFTNCBHSQL4VYPBIMGYKZ6RK3BEMXP5T2ZAWBTTJKOAKBWFNUCCGHG7YOFBTVJT5H4FA76JU5TPZM4XP24GAFLQUANIWGV7CCLTSO2LIQAL2PIBGSOWIWKYKQCHYZLE2}\par
+    \vspace{\baselineskip}
+    \noindent 4)\ \seqsplit{F6ADXSKGN5QCHHVCOUJ4PIIVKPQDJYKIOUQS34SWWXS3ISIO3MIEXSQZ2JYDNAV6XVOZWAM6HNQFCTQMXVR65RRRLRVT3UHN4P2JD7VTABKYDLHA7YK5DIEND3DHGO6L2OJCEEBTPS6YKVD4RWCTMVH7DNYDXZOMCOEQHFLBMQ4OBNAARJPIPPNBEFEJUFVDA3D6X6GKSMHSC7LEPUVAJLLXRCO4SNR5KKB5OE7UTVCZAUYJFTHNZK2LFW2KJXWAFPKXU4WJRX56WKUNI}\par
+    \vspace{\baselineskip}
+    \noindent 5)\ \seqsplit{NFYVCLEJQDEQDJDSCJEQDRBJBLSFSKJNBGGHBCIJIFQEGBZYJFSKWLRVJDKZLCBLSBCKDZLSJCQFCDJZFJCDQTCIQLVPIEQFRCBRDFSKQDWBSDZDSCNFYVCLEJCDFRIDJCIFCRLSJBJCDSCDWWLQCFSKFKFECFYBGBCTGDFKCLDWWBRBDSRTBCQDWGDRCJKBJRBEGBSDFPBGBCTFSKJCQFCDPBRRFEFYBGBCTNFYVCLEJDZYLKBDJJNBGGQDWBSDZDSCFSKRLSCQLGGDKJCQDSPCI}\par
+    \vspace{\baselineskip}
+    \noindent 6)\ \seqsplit{CUGFEKEHEEBFTCEKCFBFATOIQNIGNRDXSQNVHAYXOICYDXRFCGUDTZFFEMNZJMILDVCINKTIQNEKTYUJOOEIEZCGOITCNSTZEHMSGEUNOFTVQWHWSKXUTLERCQOJKRCJLAFZUMCSPRRCLATPYNRWFCUWTKTYUCMHOIJUNUEFVWODLVSNINEVVZOJTRDXADIXDGEFTJXIWANXJBALCFCVIFEUVICMSJJLEFGKXYNKIEVFUWNTUUNVEWVYCLIMUHEKSDQANWTFDYMTOUYYSMNZJSEXFZSCEFCPQHDKTIQNEYITSIOJDZDUTAOE}\par
+    \endgroup
+
+    \bigskip
+    \textbf{Caesar:} line ?
+
+    \textbf{Explanation:}
+    % How did you identify the Caesar ciphertext(s)?
+
+    \bigskip
+    \textbf{Affine:} line ?
+
+    \textbf{Explanation:}
+    % How did you identify the Affine ciphertext(s)?
+
+    \bigskip
+    \textbf{Vigen{\`e}re:} line 6
+
+    \textbf{Explanation:}
+    After identifying Playfair (line 1) and OTP (lines 3 and 4), the remaining candidates are lines 2, 5, and 6. Caesar and Affine are monoalphabetic, so their IC should stay close to English. Vigen{\`e}re is polyalphabetic, so its IC should drop toward a random string.
+
+    \textbf{Steps.}
+    \begin{enumerate}
+        \item Compute the unnormalized IC
+        \[
+        \kappa=\sum_{i}\frac{n_i(n_i-1)}{N(N-1)}.
+        \]
+        \item Multiply by 26 so the values can be compared with Wikipedia's official figures: English $\approx 1.73$, uniform random $= 1.00$.
+        \item Results for the three remaining lines:
+        \begin{itemize}
+            \item Line 2: $0.06878\times 26=1.79$
+            \item Line 5: $0.06472\times 26=1.68$
+            \item Line 6: $0.04308\times 26=1.12$
+        \end{itemize}
+        \item Lines 2 and 5 are both near $1.73$, so they are Caesar or Affine. Line 6 differs most from $1.73$ and is closest to $1.00$, therefore it is Vigen{\`e}re.
+    \end{enumerate}
+
+    \bigskip
+    \textbf{Playfair:} line 1
+
+    \textbf{Explanation:}
+    Line 1 is the only ciphertext that contains no letter J. In this assignment, Playfair replaces every J with I and uses a 25-letter key that excludes J, so a Playfair ciphertext can never contain J. The other letter-only lines (2, 5, and 6) all contain J, so they cannot be Playfair.
+
+    \bigskip
+    \textbf{OTP:} lines 3, 4
+
+    \textbf{Explanation:}
+    Lines 3 and 4 are the only ciphertexts that contain digits. The OTP in this assignment encodes letters as 5-bit symbols with the RFC 4648 Base32 alphabet (A--Z and 2--7), XORs them with the pad, and encodes the result back with the same alphabet. Therefore an OTP ciphertext can include the digits 2--7, whereas Caesar, Affine, Vigen{\`e}re, and Playfair output only A--Z. This also matches the note that OTP was used twice.
+\end{answer}
+
+\section{Breaking Ciphers}
+
+\question{50} For each ciphertext, give the name of the Pok{\'e}mon described in the plaintext and explain how you found it.
+
+\begin{answer}
+    % Leave a name as "?" if you could not break that cipher.
+    \textbf{Caesar:} Pok{\'e}mon name
+
+    \textbf{Explanation:}
+    % How did you break the Caesar ciphertext?
+
+    \bigskip
+    \textbf{Affine:} Pok{\'e}mon name
+
+    \textbf{Explanation:}
+    % How did you break the Affine ciphertext?
+
+    \bigskip
+    \textbf{Vigen{\`e}re:} Pok{\'e}mon name
+
+    \textbf{Explanation:}
+    % How did you break the Vigen{\`e}re ciphertext?
+
+    \bigskip
+    \textbf{Playfair:} Pok{\'e}mon name
+
+    \textbf{Explanation:}
+    % How did you break the Playfair ciphertext?
+
+    \bigskip
+    \textbf{OTP (first line):} Pok{\'e}mon name
+
+    \textbf{Explanation:}
+    % How did you break the OTP (first line) ciphertext?
+
+    \bigskip
+    \textbf{OTP (second line):} Pok{\'e}mon name
+
+    \textbf{Explanation:}
+    % How did you break the OTP (second line) ciphertext?
+\end{answer}
+
+% Include this section only if you used generative AI.
+% It must be between half a page and one page long, and cannot be written by AI.
+\section*{Generative AI Disclosure}
+
+% Describe how and where you used generative AI.
+
+\end{document}
