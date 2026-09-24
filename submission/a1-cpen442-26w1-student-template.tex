@@ -262,10 +262,100 @@
     {\scriptsize\ttfamily\seqsplit{KABUTOPSREPRESENTSPRECISIONANDSKILLWITHSHARPLIMBSANDFOCUSEDMOTIONITDEMONSTRATESMASTERYTHROUGHPRACTICEANDREFINEMENTKABUTOPSTEACHESTHATCONSISTENTEFFORTANDADAPTABILITYLEADTOEFFICIENCYITREFLECTSDISCIPLINEAGILITYANDSTRATEGICCAPABILITYKABUTOPSEMBODIESSKILLREFINEMENTANDCONTROLLEDSTRENGTH}}
 
     \bigskip
-    \textbf{Vigen{\`e}re:} Pok{\'e}mon name
+    \textbf{Vigen{\`e}re:} key length 6
 
     \textbf{Explanation:}
-    % How did you break the Vigen{\`e}re ciphertext?
+    Line 6 has 312 letters. Its IC is \(1.120\), near a random string. For a guessed key length \(k\), group \(i\) is letters \(i, i+k, i+2k, \ldots\). Those letters share one key letter, so a correct \(k\) makes each group's IC near English, about \(1.73\). The groups below start at \(k=3\).
+
+    \textbf{Key length 3.} 104 letters each.
+    \begin{quote}\scriptsize\ttfamily
+    1.\ \seqsplit{CFEETKBTQGDQHXCXCDFMJLCKQKUOEGTSESUFQWXLCJCAUSRAYWUKUHJUVDSNVJDDDFXAJLCFVMJFXKVWUVVLUKQWDTYMJXSFQKQYSJDA}\\
+    2.\ \seqsplit{UEHBCCFONNXNAOYRGTFNMDITNTJEZOCTHGNTWSUEQKJFMPCTNFWTCOUEWLNEZTXIGTINBCVEISLGYIFNUEYIHSATYOYNSFCCHTNIIDUO}\\
+    3.\ \seqsplit{GKEFEFAIIRSVYIDFUZEZIVNIEYOICINZMEOVHKTRORLZCRLPRCTYMINFOVIVORAXEJWXAFIUCJEKNEUTNWCMEDNFMUSZEZEPDIETOZTE}
+    \end{quote}
+
+    \textbf{Key length 4.} 78 letters each.
+    \begin{quote}\scriptsize\ttfamily
+    1.\ \seqsplit{CEETCAQNSHODCTEJDNQTOEONEGOQSTCKLUPLYFTUONVLIVTADTWJCIVSEXIUUECUSNDOSJFEQTESDT}\\
+    2.\ \seqsplit{UKECFTNRQAIXGZMMVKNYOZISHEFWKLQRAMRANCKCIUWVNZRDGJABFFIJFYEWUWLHDWYUMSZFHIYIZA}\\
+    3.\ \seqsplit{GEBEBOIDNYCRUFNICTEUECTTMUTHXEOCFCRTRUTMJEOSEODIEXNACECJGNVNNVIEQTMYNESCDQIODO}\\
+    4.\ \seqsplit{FHFKFIGXVXYFDFZLIIKJIGCZSNVWURJJZSCPWWYHUFDNVJXXFIXLVUMLKKFTVYMKAFTYZXCPKNTJUE}
+    \end{quote}
+
+    \textbf{Key length 5.} The first two groups have 63 letters; the last three have 62.
+    \begin{quote}\scriptsize\ttfamily
+    1.\ \seqsplit{CKBKANDVOXUFJVTKOZTZGFHUCRFSLNUYOUONVRIFWBCUSFNFUWIKNYYZFFDNSZO}\\
+    2.\ \seqsplit{UEFCTIXHIRDEMCITOCCEETWTQCZPARWUIEDIZDXTAAVVJGKUUVMSWMYJZCKEIDE}\\
+    3.\ \seqsplit{GHTFOGSACFTMIIQYEGNHUVSLOJURTWTCJFLNOXDJNLIIJKIWNYUDTTSSSPTYOU}\\
+    4.\ \seqsplit{FECBINQYYCZNLNNUIOSMNQKEJLMRPFKMUVVEJAGXXCFCLXENVCHQFOMECQIIJT}\\
+    5.\ \seqsplit{EEEFQRNXDGFZDKEJEITSOWXRKACCYCTHNWSVTDEIJFEMEYVTELEADUNXEHQTDA}
+    \end{quote}
+
+    \textbf{Key length 6.} 52 letters each.
+    \begin{quote}\scriptsize\ttfamily
+    1.\ \seqsplit{CETBQDHCCFJCQUETEUQXCCURYUUJVSVDDXJCVJXVUVUQDYJSQQSD}\\
+    2.\ \seqsplit{UHCFNXAYGFMINJZCHNWUQJMCNWCUWNZXGIBVILYFUYHAYYSCHNIU}\\
+    3.\ \seqsplit{GEEAISYDUEINEOCNMOHTOLCLRTMNOIOAEWAICENUNCENMSEEDEOT}\\
+    4.\ \seqsplit{FEKTGQXXDMLKKOGSSFWLJASAWKHUDNJDFALFMFKWVLKWTMXFKYJA}\\
+    5.\ \seqsplit{EBCONNORTNDTTEOTGTSEKFPTFTOELETITNCESGINEISTONFCTIDO}\\
+    6.\ \seqsplit{KFFIRVIFZZVIYIIZEVKRRZRPCYIFVVRXJXFUJKETWMDFUZZPITZE}
+    \end{quote}
+
+    The IC below is already multiplied by 26, and the reported value is the average of the \(k\) groups. Checked from \(k=3\) to \(k=20\).
+
+    \begin{center}
+    \small
+    \begin{tabular}{c c l}
+    \hline
+    Key length & Average IC & Note \\
+    \hline
+    3 & 1.298 & \\
+    4 & 1.279 & \\
+    5 & 1.224 & \\
+    \textbf{6} & \textbf{1.797} & shortest clear peak \\
+    7 & 0.983 & \\
+    8 & 1.351 & \\
+    9 & 1.323 & \\
+    10 & 1.484 & \\
+    11 & 1.050 & \\
+    12 & 1.727 & multiple of 6 \\
+    13 & 1.138 & \\
+    14 & 1.123 & \\
+    15 & 1.497 & \\
+    16 & 1.355 & \\
+    17 & 1.031 & \\
+    18 & 1.912 & multiple of 6 \\
+    19 & 1.063 & \\
+    20 & 1.430 & \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    Lengths 6, 12, and 18 peak. If the true length is 6, grouping every 12 or 18 letters still puts only one key letter in each group, so those multiples stay high. The shortest clear peak is 6.
+
+    \medskip
+    Group ICs for 3, 4, and 6:
+
+    \begin{center}
+    \small
+    \begin{tabular}{c c c c c c}
+    \hline
+    \multicolumn{2}{c}{\(k=3\)} & \multicolumn{2}{c}{\(k=4\)} & \multicolumn{2}{c}{\(k=6\)} \\
+    Group & IC & Group & IC & Group & IC \\
+    \hline
+    1 & 1.218 & 1 & 1.446 & 1 & 1.922 \\
+    2 & 1.345 & 2 & 0.970 & 2 & 1.353 \\
+    3 & 1.330 & 3 & 1.532 & 3 & 1.961 \\
+      &       & 4 & 1.169 & 4 & 1.392 \\
+      &       &   &       & 5 & 2.412 \\
+      &       &   &       & 6 & 1.745 \\
+    \hline
+    avg & 1.298 & avg & 1.279 & avg & 1.797 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    At length 6 every group stays near or above English. At 3 and 4 some groups stay near 1. The groups do not need identical ICs: each one is a Caesar shift of English, so the values move around 1.73. The key length is 6.
 
     \bigskip
     \textbf{Playfair:} Pok{\'e}mon name
