@@ -118,27 +118,67 @@
         \includegraphics[width=\linewidth]{cipher2_frequency.png}
 
         \smallskip
-        Line 2
+        Line 2. The ciphertext was pasted into {\hypersetup{pdfborder={0 0 0}}\url{https://caesarcipher.org/ciphers/frequency-analysis}}, which drew this chart.
     \end{center}
 
     \begin{center}
         \includegraphics[width=\linewidth]{cipher5_frequency.png}
 
         \smallskip
-        Line 5
+        Line 5. Same tool, {\hypersetup{pdfborder={0 0 0}}\url{https://caesarcipher.org/ciphers/frequency-analysis}}.
     \end{center}
 
     \bigskip
-    \textbf{Caesar:} line ?
+    \textbf{Caesar:} line 2
 
     \textbf{Explanation:}
-    % How did you identify the Caesar ciphertext(s)?
+    Caesar shifts every letter by the same $x$. Guess which bar is E; then T, A, O, \ldots\ are that letter plus the same $x$. A red cell is under 1\%, so that guess is wrong.
+
+    \textbf{Line 2.}
+    $\mathrm{E}\to\mathrm{H}$ ($x=3$) sends I to L (0\%), so it is wrong. $\mathrm{E}\to\mathrm{S}$ ($x=14$) keeps E through D high, so line 2 is Caesar with shift 14.
+
+    \begin{center}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{l r c c c c c c c c c c}
+    \hline
+    Image of E & $x$ & E & T & A & O & I & N & S & H & R & D \\
+    \hline
+    H (13.1\%) & 3 & H 13.1\% & W 8.5\% & D 1.8\% & R 3.2\% & \textcolor{red}{L 0.0\%} & Q 4.3\% & V 4.3\% & K 2.5\% & U 2.5\% & G 5.7\% \\
+    S (9.9\%) & 14 & S 9.9\% & H 13.1\% & O 9.6\% & C 6.7\% & W 8.5\% & B 9.2\% & G 5.7\% & V 4.3\% & F 5.7\% & R 3.2\% \\
+    \hline
+    \end{tabular}}
+    \end{center}
+
+    \medskip
+    \textbf{Line 5.}
+    Every row has a red cell, so no single shift fits. Line 5 is not Caesar.
+
+    \begin{center}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{l r c c c c c c c c c c}
+    \hline
+    Image of E & $x$ & E & T & A & O & I & N & S & H & R & D \\
+    \hline
+    C (11.4\%) & 24 & C 11.4\% & R 4.6\% & Y 2.5\% & \textcolor{red}{M 0.0\%} & G 4.6\% & L 5.3\% & Q 5.3\% & F 8.2\% & P 1.4\% & B 9.3\% \\
+    D (10.7\%) & 25 & D 10.7\% & S 7.1\% & Z 2.5\% & N 1.8\% & \textcolor{red}{H 0.4\%} & M 0.0\% & R 4.6\% & G 4.6\% & Q 5.3\% & C 11.4\% \\
+    B (9.3\%) & 23 & B 9.3\% & Q 5.3\% & \textcolor{red}{X 0.0\%} & L 5.3\% & F 8.2\% & K 4.6\% & P 1.4\% & E 3.6\% & O 0.0\% & A 0.0\% \\
+    F (8.2\%) & 1 & F 8.2\% & \textcolor{red}{U 0.0\%} & B 9.3\% & P 1.4\% & J 7.8\% & O 0.0\% & T 1.8\% & I 2.5\% & S 7.1\% & E 3.6\% \\
+    J (7.8\%) & 5 & J 7.8\% & Y 2.5\% & F 8.2\% & T 1.8\% & N 1.8\% & S 7.1\% & \textcolor{red}{X 0.0\%} & M 0.0\% & W 2.8\% & I 2.5\% \\
+    S (7.1\%) & 14 & S 7.1\% & \textcolor{red}{H 0.4\%} & O 0.0\% & C 11.4\% & W 2.8\% & B 9.3\% & G 4.6\% & V 1.8\% & F 8.2\% & R 4.6\% \\
+    L (5.3\%) & 7 & L 5.3\% & \textcolor{red}{A 0.0\%} & H 0.4\% & V 1.8\% & P 1.4\% & U 0.0\% & Z 2.5\% & O 0.0\% & Y 2.5\% & K 4.6\% \\
+    Q (5.3\%) & 12 & Q 5.3\% & F 8.2\% & \textcolor{red}{M 0.0\%} & A 0.0\% & U 0.0\% & Z 2.5\% & E 3.6\% & T 1.8\% & D 10.7\% & P 1.4\% \\
+    G (4.6\%) & 2 & G 4.6\% & V 1.8\% & C 11.4\% & Q 5.3\% & K 4.6\% & P 1.4\% & \textcolor{red}{U 0.0\%} & J 7.8\% & T 1.8\% & F 8.2\% \\
+    K (4.6\%) & 6 & K 4.6\% & Z 2.5\% & G 4.6\% & \textcolor{red}{U 0.0\%} & O 0.0\% & T 1.8\% & Y 2.5\% & N 1.8\% & X 0.0\% & J 7.8\% \\
+    R (4.6\%) & 13 & R 4.6\% & G 4.6\% & N 1.8\% & B 9.3\% & V 1.8\% & \textcolor{red}{A 0.0\%} & F 8.2\% & U 0.0\% & E 3.6\% & Q 5.3\% \\
+    \hline
+    \end{tabular}}
+    \end{center}
 
     \bigskip
-    \textbf{Affine:} line ?
+    \textbf{Affine:} line 5
 
     \textbf{Explanation:}
-    % How did you identify the Affine ciphertext(s)?
+    Line 5 is the other monoalphabetic line, and the table shows it is not a fixed shift, so it is Affine.
 
     \bigskip
     \textbf{Vigen{\`e}re:} line 6
@@ -152,7 +192,7 @@
         \[
         \kappa=\sum_{i}\frac{n_i(n_i-1)}{N(N-1)}.
         \]
-        \item Multiply by 26 so the values can be compared with Wikipedia's official figures: English $\approx 1.73$, uniform random $= 1.00$.
+        \item Multiply by 26 so the values can be compared with the figures on Wikipedia ({\hypersetup{pdfborder={0 0 0}}\url{https://en.wikipedia.org/wiki/Index_of_coincidence}}): English $\approx 1.73$, uniform random $= 1.00$.
         \item Results for the three remaining lines:
         \begin{itemize}
             \item Line 2: $0.06878\times 26=1.79$
@@ -181,16 +221,45 @@
 
 \begin{answer}
     % Leave a name as "?" if you could not break that cipher.
-    \textbf{Caesar:} Pok{\'e}mon name
+    \textbf{Caesar:} Slowbro
 
     \textbf{Explanation:}
-    % How did you break the Caesar ciphertext?
+    Question 2 gave the key \(x = 14\). Subtract 14 from every letter. The plaintext begins with SLOWBRO.
+
+    \smallskip
+    {\scriptsize\ttfamily\seqsplit{SLOWBROEMBODIESTRANSITIONANDMATURITYWITHITSCALMDEMEANORANDEVOLVINGABILITIESITDEMONSTRATESTHATGROWTHREQUIRESBOTHADAPTATIONANDACCEPTANCESLOWBROTEACHESTHATCHANGECANBRINGNEWSTRENGTHSITREFLECTSTHEIMPORTANCEOFPATIENCEANDTIMINGSHOWINGTHATTRUEDEVELOPMENTBALANCESCONTINUITYWITHTRANSFORMATION}}
 
     \bigskip
-    \textbf{Affine:} Pok{\'e}mon name
+    \textbf{Affine:} Kabutops
 
     \textbf{Explanation:}
-    % How did you break the Affine ciphertext?
+    Encryption is \(ax+b\equiv y\pmod{26}\), so \(ax\equiv y-b\pmod{26}\). Decryption needs \(a^{-1}\), and that exists only when \(\gcd(a,26)=1\). The 12 possible values of \(a\) are
+    \[
+    1,3,5,7,9,11,15,17,19,21,23,25.
+    \]
+    The tallest ciphertext bars are C, D, B, F, and the common English letters are E, T, A, O. Pair them and solve. \(\mathrm{E}\to\mathrm{D}\) and \(\mathrm{T}\to\mathrm{C}\) give
+    \begin{align*}
+    4a+b &\equiv 3 \pmod{26},\\
+    19a+b &\equiv 2 \pmod{26}.
+    \end{align*}
+    Subtract: \(15a\equiv 25\pmod{26}\). Since \(15\cdot 7\equiv 1\), \(a\equiv 25\cdot 7\equiv 19\). Then \(4\cdot 19+b\equiv 3\), so \(b\equiv 5\).
+
+    With \(a=19\) and \(b=5\), the encryption formula is
+    \[
+    19x\equiv y-5\pmod{26}.
+    \]
+    Multiply both sides by a number \(k\):
+    \[
+    19kx\equiv k(y-5)\pmod{26}.
+    \]
+    The left side should be only \(x\), so \(k\) must satisfy \(19k\equiv 1\pmod{26}\). Then
+    \[
+    19kx\equiv 1\cdot x\equiv x\pmod{26}.
+    \]
+    \(19\cdot 11=209=8\cdot 26+1\), so \(k=11\). Each ciphertext letter \(y\) becomes \(11(y-5)\bmod 26\). The plaintext begins with KABUTOPS.
+
+    \smallskip
+    {\scriptsize\ttfamily\seqsplit{KABUTOPSREPRESENTSPRECISIONANDSKILLWITHSHARPLIMBSANDFOCUSEDMOTIONITDEMONSTRATESMASTERYTHROUGHPRACTICEANDREFINEMENTKABUTOPSTEACHESTHATCONSISTENTEFFORTANDADAPTABILITYLEADTOEFFICIENCYITREFLECTSDISCIPLINEAGILITYANDSTRATEGICCAPABILITYKABUTOPSEMBODIESSKILLREFINEMENTANDCONTROLLEDSTRENGTH}}
 
     \bigskip
     \textbf{Vigen{\`e}re:} Pok{\'e}mon name
