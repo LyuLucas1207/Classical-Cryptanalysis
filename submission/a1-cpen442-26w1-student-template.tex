@@ -401,84 +401,97 @@
         Group 6
     \end{center}
 
-    Same test as the Caesar line: guess which bar is E, then check T, A, O, I, N. A guess that sends one of those to 0\% is rejected. Each group has only 52 letters, so a later letter can be missing and the shift can still be right. The key letter is A shifted by that \(x\).
+    Same test as the Caesar line. Each row guesses that E is the next tallest bar, then fills in T, A, O, I, N with the same \(x\). A red cell is 0\%, so that row is rejected. The key letter is A shifted by the \(x\) that survives.
 
-    \textbf{Group 1.} C and U are both 13.5\%. \(\mathrm{E}\to\mathrm{C}\) (\(x=24\)) sends O to M (0\%). \(\mathrm{E}\to\mathrm{U}\) (\(x=16\)) keeps E through N high, so the shift is 16 and the key letter is Q.
+    \textbf{Group 1.} C is tried first and sends O to M. U, the other 13.5\% bar, keeps E through N high. Shift 16, key letter Q.
 
     \begin{center}
-    \small
-    \begin{tabular}{c c c c c c c c}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{l c c c c c c c}
     \hline
-    & E & T & A & O & I & N & \(x\) \\
+    Image of E & \(x\) & E & T & A & O & I & N \\
     \hline
-    \(\mathrm{E}\to\mathrm{U}\) & U 13.5\% & J 9.6\% & Q 11.5\% & E 5.8\% & Y 3.8\% & D 9.6\% & 16 \\
+    C (13.5\%) & 24 & C 13.5\% & R 1.9\% & Y 3.8\% & \textcolor{red}{M 0.0\%} & G 0.0\% & L 0.0\% \\
+    U (13.5\%) & 16 & U 13.5\% & J 9.6\% & Q 11.5\% & E 5.8\% & Y 3.8\% & D 9.6\% \\
     \hline
-    \end{tabular}
+    \end{tabular}}
     \end{center}
 
-    \textbf{Group 2.} \(\mathrm{E}\to\mathrm{N}\), \(\mathrm{E}\to\mathrm{C}\), and \(\mathrm{E}\to\mathrm{U}\) each hit a 0\% cell. \(\mathrm{E}\to\mathrm{Y}\) (\(x=20\)) stays high, so the key letter is U.
+    \textbf{Group 2.} N, C, and U each hit a red cell. Y does not. Shift 20, key letter U.
 
     \begin{center}
-    \small
-    \begin{tabular}{c c c c c c c c}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{l c c c c c c c}
     \hline
-    & E & T & A & O & I & N & \(x\) \\
+    Image of E & \(x\) & E & T & A & O & I & N \\
     \hline
-    \(\mathrm{E}\to\mathrm{Y}\) & Y 9.6\% & N 11.5\% & U 9.6\% & I 7.7\% & C 9.6\% & H 7.7\% & 20 \\
+    N (11.5\%) & 9 & N 11.5\% & C 9.6\% & J 3.8\% & X 3.8\% & \textcolor{red}{R 0.0\%} & W 5.8\% \\
+    C (9.6\%) & 24 & C 9.6\% & \textcolor{red}{R 0.0\%} & Y 9.6\% & M 3.8\% & G 3.8\% & L 1.9\% \\
+    U (9.6\%) & 16 & U 9.6\% & J 3.8\% & Q 1.9\% & \textcolor{red}{E 0.0\%} & Y 9.6\% & D 0.0\% \\
+    Y (9.6\%) & 20 & Y 9.6\% & N 11.5\% & U 9.6\% & I 7.7\% & C 9.6\% & H 7.7\% \\
     \hline
-    \end{tabular}
+    \end{tabular}}
     \end{center}
 
-    \textbf{Group 3.} E is already the tallest bar, 19.2\%, and \(x=0\) keeps the common letters on themselves. The key letter is A.
+    \textbf{Group 3.} The first bar is already E, and \(x=0\) keeps every common letter off 0\%. Shift 0, key letter A.
 
     \begin{center}
-    \small
-    \begin{tabular}{c c c c c c c c}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{l c c c c c c c}
     \hline
-    & E & T & A & O & I & N & \(x\) \\
+    Image of E & \(x\) & E & T & A & O & I & N \\
     \hline
-    \(\mathrm{E}\to\mathrm{E}\) & E 19.2\% & T 5.8\% & A 5.8\% & O 11.5\% & I 7.7\% & N 11.5\% & 0 \\
+    E (19.2\%) & 0 & E 19.2\% & T 5.8\% & A 5.8\% & O 11.5\% & I 7.7\% & N 11.5\% \\
     \hline
-    \end{tabular}
+    \end{tabular}}
     \end{center}
 
-    \textbf{Group 4.} \(\mathrm{E}\to\mathrm{K}\), F, A, and L each hit 0\%. \(\mathrm{E}\to\mathrm{W}\) (\(x=18\)) keeps E through N high, so the key letter is S.
+    \textbf{Group 4.} K, F, A, and L each hit a red cell. W keeps E through N high. Shift 18, key letter S.
 
     \begin{center}
-    \small
-    \begin{tabular}{c c c c c c c c}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{l c c c c c c c}
     \hline
-    & E & T & A & O & I & N & \(x\) \\
+    Image of E & \(x\) & E & T & A & O & I & N \\
     \hline
-    \(\mathrm{E}\to\mathrm{W}\) & W 7.7\% & L 7.7\% & S 5.8\% & G 3.8\% & A 7.7\% & F 11.5\% & 18 \\
+    K (13.5\%) & 6 & K 13.5\% & \textcolor{red}{Z 0.0\%} & G 3.8\% & U 1.9\% & O 1.9\% & T 3.8\% \\
+    F (11.5\%) & 1 & F 11.5\% & U 1.9\% & \textcolor{red}{B 0.0\%} & P 0.0\% & J 5.8\% & O 1.9\% \\
+    A (7.7\%) & 22 & A 7.7\% & \textcolor{red}{P 0.0\%} & W 7.7\% & K 13.5\% & E 1.9\% & J 5.8\% \\
+    L (7.7\%) & 7 & L 7.7\% & A 7.7\% & H 1.9\% & V 1.9\% & \textcolor{red}{P 0.0\%} & U 1.9\% \\
+    W (7.7\%) & 18 & W 7.7\% & L 7.7\% & S 5.8\% & G 3.8\% & A 7.7\% & F 11.5\% \\
     \hline
-    \end{tabular}
+    \end{tabular}}
     \end{center}
 
-    \textbf{Group 5.} The tall bars are already T, E, N, O, I. \(\mathrm{E}\to\mathrm{T}\) (\(x=15\)) sends I to X (0\%). \(x=0\) leaves those bars on T, E, N, O, I. A is missing in this short group, but the shift is 0 and the key letter is A.
+    \textbf{Group 5.} T, the tallest bar, sends I to X, so \(x=15\) is rejected. The next bar is E itself, which gives \(x=0\). A is 0\% here, marked possible: these 52 letters can simply contain no A. T, O, I, and N sit on tall bars and are already those English letters. The shift is confirmed when the other five groups are fixed: subtracting 0 here makes the six groups read as English beginning MAGNETON. The key letter is A.
 
     \begin{center}
-    \small
-    \begin{tabular}{c c c c c c c c}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{l c c c c c c c}
     \hline
-    & E & T & A & O & I & N & \(x\) \\
+    Image of E & \(x\) & E & T & A & O & I & N \\
     \hline
-    \(\mathrm{E}\to\mathrm{E}\) & E 13.5\% & T 21.2\% & A 0.0\% & O 11.5\% & I 7.7\% & N 11.5\% & 0 \\
+    T (21.2\%) & 15 & T 21.2\% & I 7.7\% & P 1.9\% & D 3.8\% & \textcolor{red}{X 0.0\%} & C 5.8\% \\
+    E (13.5\%) & 0 & E 13.5\% & T 21.2\% & A 0.0\% (possible) & O 11.5\% & I 7.7\% & N 11.5\% \\
     \hline
-    \end{tabular}
+    \end{tabular}}
     \end{center}
 
-    \textbf{Group 6.} \(\mathrm{E}\to\mathrm{I}\), Z, F, and R each hit 0\%. \(\mathrm{E}\to\mathrm{V}\) (\(x=17\)) stays high, so the key letter is R.
+    \textbf{Group 6.} I, Z, F, and R each hit a red cell. V keeps E through N high. Shift 17, key letter R.
 
     \begin{center}
-    \small
-    \begin{tabular}{c c c c c c c c}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{l c c c c c c c}
     \hline
-    & E & T & A & O & I & N & \(x\) \\
+    Image of E & \(x\) & E & T & A & O & I & N \\
     \hline
-    \(\mathrm{E}\to\mathrm{V}\) & V 9.6\% & K 5.8\% & R 9.6\% & F 11.5\% & Z 13.5\% & E 5.8\% & 17 \\
+    I (13.5\%) & 4 & I 13.5\% & X 3.8\% & E 5.8\% & \textcolor{red}{S 0.0\%} & M 1.9\% & R 9.6\% \\
+    Z (13.5\%) & 21 & Z 13.5\% & \textcolor{red}{O 0.0\%} & V 9.6\% & J 3.8\% & D 1.9\% & I 13.5\% \\
+    F (11.5\%) & 1 & F 11.5\% & U 3.8\% & \textcolor{red}{B 0.0\%} & P 3.8\% & J 3.8\% & O 0.0\% \\
+    R (9.6\%) & 13 & R 9.6\% & \textcolor{red}{G 0.0\%} & N 0.0\% & B 0.0\% & V 9.6\% & A 0.0\% \\
+    V (9.6\%) & 17 & V 9.6\% & K 5.8\% & R 9.6\% & F 11.5\% & Z 13.5\% & E 5.8\% \\
     \hline
-    \end{tabular}
+    \end{tabular}}
     \end{center}
 
     The six shifts are 16, 20, 0, 18, 0, 17, so the key is QUASAR. Subtract that repeating shift. The plaintext begins with MAGNETON.
@@ -493,16 +506,147 @@
     % How did you break the Playfair ciphertext?
 
     \bigskip
-    \textbf{OTP (first line):} Pok{\'e}mon name
+    \textbf{OTP (first line):} line 3, Growlithe
 
     \textbf{Explanation:}
-    % How did you break the OTP (first line) ciphertext?
+    Lines 3 and 4 use the same OTP key. Each character is one RFC 4648 Base32 symbol, A--Z then 2--7, and each symbol is 5 bits. XORing the two ciphertexts cancels the key, so the result is the XOR of the two plaintexts, not a plaintext letter by itself.
+
+    Line 3 starts with B (\(00001\)) and line 4 starts with F (\(00101\)):
+    \[
+    00001 \oplus 00101 = 00100,
+    \]
+    which is E. Line 3 has 310 symbols and line 4 has 273, so the XOR covers the first 273 symbols. It begins EFPYGMCD.
+
+    \smallskip
+    {\scriptsize\ttfamily\seqsplit{EFPYGMCDLAA5VJBWCXDZKNE2TVCJDPNQ5OVMYFTMSSAMLBAVNIAZLIAFNVM3VPAS7WAAA4A7Q2TRE6WBT52OWG45LSFDGJ7FM4BAACNPQPBWMCWMXKRTB56VHWTCKHRXSOAKJNJ2ANVAGPSKB6IKIMMDJSXGCBHCQRAFRVVBHMPQAW4HWAVGNQCEXIGITXFI4O3RWWKMKG6MTVQFLYCPUYRORUPPBE3TKAALLJLWRTF77MWMEASEKX5XAWFUADLTKWGLDTMVXXYVG6UAA}}
+
+    \medskip
+    RFC 4648 Base32 uses A--Z and 2--7. The value is the position in that list, written as 5 bits.
+
+    \begin{center}
+    \scriptsize
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{c r c c r c}
+    \hline
+    Char & Value & Bits & Char & Value & Bits \\
+    \hline
+    A & 0 & 00000 & Q & 16 & 10000 \\
+    B & 1 & 00001 & R & 17 & 10001 \\
+    C & 2 & 00010 & S & 18 & 10010 \\
+    D & 3 & 00011 & T & 19 & 10011 \\
+    E & 4 & 00100 & U & 20 & 10100 \\
+    F & 5 & 00101 & V & 21 & 10101 \\
+    G & 6 & 00110 & W & 22 & 10110 \\
+    H & 7 & 00111 & X & 23 & 10111 \\
+    I & 8 & 01000 & Y & 24 & 11000 \\
+    J & 9 & 01001 & Z & 25 & 11001 \\
+    K & 10 & 01010 & 2 & 26 & 11010 \\
+    L & 11 & 01011 & 3 & 27 & 11011 \\
+    M & 12 & 01100 & 4 & 28 & 11100 \\
+    N & 13 & 01101 & 5 & 29 & 11101 \\
+    O & 14 & 01110 & 6 & 30 & 11110 \\
+    P & 15 & 01111 & 7 & 31 & 11111 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    The plaintext uses only A--Z, so a pair that contains 2--7 is impossible. Each remaining pair can be read in either order. The first three XOR symbols are E, F, and P.
+
+    \textbf{E} $=00100$. Twelve letter pairs. Dropped: Y$\leftrightarrow$4, Z$\leftrightarrow$5, 2$\leftrightarrow$6, 3$\leftrightarrow$7.
+
+    \begin{center}
+    \small
+    \begin{tabular}{c c c c}
+    \hline
+    First & Bits & Second & Bits \\
+    \hline
+    A & 00000 & E & 00100 \\
+    B & 00001 & F & 00101 \\
+    C & 00010 & G & 00110 \\
+    D & 00011 & H & 00111 \\
+    I & 01000 & M & 01100 \\
+    J & 01001 & N & 01101 \\
+    K & 01010 & O & 01110 \\
+    L & 01011 & P & 01111 \\
+    Q & 10000 & U & 10100 \\
+    R & 10001 & V & 10101 \\
+    S & 10010 & W & 10110 \\
+    T & 10011 & X & 10111 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    \textbf{F} $=00101$. Twelve letter pairs. Dropped: Y$\leftrightarrow$5, Z$\leftrightarrow$4, 2$\leftrightarrow$7, 3$\leftrightarrow$6.
+
+    \begin{center}
+    \small
+    \begin{tabular}{c c c c}
+    \hline
+    First & Bits & Second & Bits \\
+    \hline
+    A & 00000 & F & 00101 \\
+    B & 00001 & E & 00100 \\
+    C & 00010 & H & 00111 \\
+    D & 00011 & G & 00110 \\
+    I & 01000 & N & 01101 \\
+    J & 01001 & M & 01100 \\
+    K & 01010 & P & 01111 \\
+    L & 01011 & O & 01110 \\
+    Q & 10000 & V & 10101 \\
+    R & 10001 & U & 10100 \\
+    S & 10010 & X & 10111 \\
+    T & 10011 & W & 10110 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    \textbf{P} $=01111$. Ten letter pairs. Dropped: Q$\leftrightarrow$7, R$\leftrightarrow$6, S$\leftrightarrow$5, T$\leftrightarrow$4, U$\leftrightarrow$3, V$\leftrightarrow$2.
+
+    \begin{center}
+    \small
+    \begin{tabular}{c c c c}
+    \hline
+    First & Bits & Second & Bits \\
+    \hline
+    A & 00000 & P & 01111 \\
+    B & 00001 & O & 01110 \\
+    C & 00010 & N & 01101 \\
+    D & 00011 & M & 01100 \\
+    E & 00100 & L & 01011 \\
+    F & 00101 & K & 01010 \\
+    G & 00110 & J & 01001 \\
+    H & 00111 & I & 01000 \\
+    W & 10110 & Z & 11001 \\
+    X & 10111 & Y & 11000 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    These pairs were matched against the names of the first 151 Pok{\'e}mon. The first four XOR symbols, EFPY, leave one pair of names: Growlithe and Cubone. The next two symbols agree as well. G$\oplus$C, R$\oplus$U, O$\oplus$B, W$\oplus$O, L$\oplus$N, and I$\oplus$E are E, F, P, Y, G, and M.
+
+    \begin{center}
+    \small
+    \begin{tabular}{c c c c}
+    \hline
+    Position & Growlithe & Cubone & XOR \\
+    \hline
+    1 & G & C & E \\
+    2 & R & U & F \\
+    3 & O & B & P \\
+    4 & W & O & Y \\
+    5 & L & N & G \\
+    6 & I & E & M \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    Taking the two openings GROWLITHEREPRESENTS and CUBONEREPRESENTS, the XOR of the shared length is still the ciphertext XOR. Line 3 is assigned to Growlithe and line 4 to Cubone.
 
     \bigskip
-    \textbf{OTP (second line):} Pok{\'e}mon name
+    \textbf{OTP (second line):} line 4, Cubone
 
     \textbf{Explanation:}
-    % How did you break the OTP (second line) ciphertext?
+    Cubone. This line is the full 273-symbol ciphertext used in the XOR.
 \end{answer}
 
 % Include this section only if you used generative AI.
