@@ -262,7 +262,7 @@
     {\scriptsize\ttfamily\seqsplit{KABUTOPSREPRESENTSPRECISIONANDSKILLWITHSHARPLIMBSANDFOCUSEDMOTIONITDEMONSTRATESMASTERYTHROUGHPRACTICEANDREFINEMENTKABUTOPSTEACHESTHATCONSISTENTEFFORTANDADAPTABILITYLEADTOEFFICIENCYITREFLECTSDISCIPLINEAGILITYANDSTRATEGICCAPABILITYKABUTOPSEMBODIESSKILLREFINEMENTANDCONTROLLEDSTRENGTH}}
 
     \bigskip
-    \textbf{Vigen{\`e}re:} key length 6
+    \textbf{Vigen{\`e}re:} Magneton
 
     \textbf{Explanation:}
     Line 6 has 312 letters. Its IC is \(1.120\), near a random string. For a guessed key length \(k\), group \(i\) is letters \(i, i+k, i+2k, \ldots\). Those letters share one key letter, so a correct \(k\) makes each group's IC near English, about \(1.73\). The groups below start at \(k=3\).
@@ -356,6 +356,135 @@
     \end{center}
 
     At length 6 every group stays near or above English. At 3 and 4 some groups stay near 1. The groups do not need identical ICs: each one is a Caesar shift of English, so the values move around 1.73. The key length is 6.
+
+    Each group is one Caesar cipher. The frequency charts, in group order:
+
+    \begin{center}
+        \includegraphics[width=\linewidth]{cipher6_g1_frequency.png}
+
+        \smallskip
+        Group 1
+    \end{center}
+
+    \begin{center}
+        \includegraphics[width=\linewidth]{cipher6_g2_frequency.png}
+
+        \smallskip
+        Group 2
+    \end{center}
+
+    \begin{center}
+        \includegraphics[width=\linewidth]{cipher6_g3_frequency.png}
+
+        \smallskip
+        Group 3
+    \end{center}
+
+    \begin{center}
+        \includegraphics[width=\linewidth]{cipher6_g4_frequency.png}
+
+        \smallskip
+        Group 4
+    \end{center}
+
+    \begin{center}
+        \includegraphics[width=\linewidth]{cipher6_g5_frequency.png}
+
+        \smallskip
+        Group 5
+    \end{center}
+
+    \begin{center}
+        \includegraphics[width=\linewidth]{cipher6_g6_frequency.png}
+
+        \smallskip
+        Group 6
+    \end{center}
+
+    Same test as the Caesar line: guess which bar is E, then check T, A, O, I, N. A guess that sends one of those to 0\% is rejected. Each group has only 52 letters, so a later letter can be missing and the shift can still be right. The key letter is A shifted by that \(x\).
+
+    \textbf{Group 1.} C and U are both 13.5\%. \(\mathrm{E}\to\mathrm{C}\) (\(x=24\)) sends O to M (0\%). \(\mathrm{E}\to\mathrm{U}\) (\(x=16\)) keeps E through N high, so the shift is 16 and the key letter is Q.
+
+    \begin{center}
+    \small
+    \begin{tabular}{c c c c c c c c}
+    \hline
+    & E & T & A & O & I & N & \(x\) \\
+    \hline
+    \(\mathrm{E}\to\mathrm{U}\) & U 13.5\% & J 9.6\% & Q 11.5\% & E 5.8\% & Y 3.8\% & D 9.6\% & 16 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    \textbf{Group 2.} \(\mathrm{E}\to\mathrm{N}\), \(\mathrm{E}\to\mathrm{C}\), and \(\mathrm{E}\to\mathrm{U}\) each hit a 0\% cell. \(\mathrm{E}\to\mathrm{Y}\) (\(x=20\)) stays high, so the key letter is U.
+
+    \begin{center}
+    \small
+    \begin{tabular}{c c c c c c c c}
+    \hline
+    & E & T & A & O & I & N & \(x\) \\
+    \hline
+    \(\mathrm{E}\to\mathrm{Y}\) & Y 9.6\% & N 11.5\% & U 9.6\% & I 7.7\% & C 9.6\% & H 7.7\% & 20 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    \textbf{Group 3.} E is already the tallest bar, 19.2\%, and \(x=0\) keeps the common letters on themselves. The key letter is A.
+
+    \begin{center}
+    \small
+    \begin{tabular}{c c c c c c c c}
+    \hline
+    & E & T & A & O & I & N & \(x\) \\
+    \hline
+    \(\mathrm{E}\to\mathrm{E}\) & E 19.2\% & T 5.8\% & A 5.8\% & O 11.5\% & I 7.7\% & N 11.5\% & 0 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    \textbf{Group 4.} \(\mathrm{E}\to\mathrm{K}\), F, A, and L each hit 0\%. \(\mathrm{E}\to\mathrm{W}\) (\(x=18\)) keeps E through N high, so the key letter is S.
+
+    \begin{center}
+    \small
+    \begin{tabular}{c c c c c c c c}
+    \hline
+    & E & T & A & O & I & N & \(x\) \\
+    \hline
+    \(\mathrm{E}\to\mathrm{W}\) & W 7.7\% & L 7.7\% & S 5.8\% & G 3.8\% & A 7.7\% & F 11.5\% & 18 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    \textbf{Group 5.} The tall bars are already T, E, N, O, I. \(\mathrm{E}\to\mathrm{T}\) (\(x=15\)) sends I to X (0\%). \(x=0\) leaves those bars on T, E, N, O, I. A is missing in this short group, but the shift is 0 and the key letter is A.
+
+    \begin{center}
+    \small
+    \begin{tabular}{c c c c c c c c}
+    \hline
+    & E & T & A & O & I & N & \(x\) \\
+    \hline
+    \(\mathrm{E}\to\mathrm{E}\) & E 13.5\% & T 21.2\% & A 0.0\% & O 11.5\% & I 7.7\% & N 11.5\% & 0 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    \textbf{Group 6.} \(\mathrm{E}\to\mathrm{I}\), Z, F, and R each hit 0\%. \(\mathrm{E}\to\mathrm{V}\) (\(x=17\)) stays high, so the key letter is R.
+
+    \begin{center}
+    \small
+    \begin{tabular}{c c c c c c c c}
+    \hline
+    & E & T & A & O & I & N & \(x\) \\
+    \hline
+    \(\mathrm{E}\to\mathrm{V}\) & V 9.6\% & K 5.8\% & R 9.6\% & F 11.5\% & Z 13.5\% & E 5.8\% & 17 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    The six shifts are 16, 20, 0, 18, 0, 17, so the key is QUASAR. Subtract that repeating shift. The plaintext begins with MAGNETON.
+
+    \smallskip
+    {\scriptsize\ttfamily\seqsplit{MAGNETONEMBODIESCOLLABORATIONANDSYNERGYFORMEDFROMMULTIPLEUNITSITDEMONSTRATESTHEPOWEROFCOORDINATIONMAGNETONTEACHESTHATTEAMWORKAMPLIFIESCAPABILITYITREFLECTSTHEIMPORTANCEOFCOLLECTIVEEFFORTANDALIGNMENTSHOWINGTHATCOMBINEDFOCUSSTRENGTHENSINFLUENCEANDEFFECTIVENESSMAGNETONEMBODIESUNITYEFFICIENCYANDSTRATEGICCOORDINATION}}
 
     \bigskip
     \textbf{Playfair:} Pok{\'e}mon name
