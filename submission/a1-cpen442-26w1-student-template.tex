@@ -49,7 +49,7 @@
     \hline
     Chongkai (Lucas) Lyu & 30349559 \\
     \hline
-    Leyang Gao & ? \\
+    Leyang Gao & 58256207 \\
     \hline
 \end{tabularx}
 
@@ -715,8 +715,10 @@
 
 % Include this section only if you used generative AI.
 % It must be between half a page and one page long, and cannot be written by AI.
+\begin{samepage}
 \section*{Generative AI Disclosure}
 
-% Describe how and where you used generative AI.
+We used a generative AI coding assistant for the Playfair program in Question 3. I told the assistant the simulated annealing logic and gave it a basic version of the code: start from a key matrix, decrypt the ciphertext, score it with English quadgram frequencies, then swap two letters or, less often, two rows or two columns. A higher score is kept, and a lower score is sometimes kept as the temperature decreases. The assistant implemented the program from that logic and that basic code. The code is at \href{https://github.com/LyuLucas1207/Classical-Cryptanalysis/tree/main/playfair}{https://github.com/LyuLucas1207/\allowbreak{}Classical-Cryptanalysis/tree/main/playfair}. I ran it and checked that the plaintext is Charizard.
+\end{samepage}
 
 \end{document}
