@@ -6,7 +6,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage[dvipsnames,table]{xcolor}
 \usepackage[most]{tcolorbox}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -500,10 +500,74 @@
     {\scriptsize\ttfamily\seqsplit{MAGNETONEMBODIESCOLLABORATIONANDSYNERGYFORMEDFROMMULTIPLEUNITSITDEMONSTRATESTHEPOWEROFCOORDINATIONMAGNETONTEACHESTHATTEAMWORKAMPLIFIESCAPABILITYITREFLECTSTHEIMPORTANCEOFCOLLECTIVEEFFORTANDALIGNMENTSHOWINGTHATCOMBINEDFOCUSSTRENGTHENSINFLUENCEANDEFFECTIVENESSMAGNETONEMBODIESUNITYEFFICIENCYANDSTRATEGICCOORDINATION}}
 
     \bigskip
-    \textbf{Playfair:} Pok{\'e}mon name
+    \textbf{Playfair:} Charizard
 
     \textbf{Explanation:}
-    % How did you break the Playfair ciphertext?
+    Line 1 is the Playfair ciphertext. The key is a \(5\times 5\) matrix, a permutation of \texttt{A}--\texttt{Z} with \texttt{J} removed, so the key space has size \(25!\approx 1.55\times 10^{25}\). Trying every matrix is not practical. The search used here is simulated annealing (\mbox{\url{https://en.wikipedia.org/wiki/Simulated_annealing}}). The program is available at \href{https://github.com/LyuLucas1207/Classical-Cryptanalysis/tree/main/playfair}{https://github.com/LyuLucas1207/\allowbreak{}Classical-Cryptanalysis/tree/main/playfair}.
+
+    Each candidate key decrypts the ciphertext. The resulting string is scored with English quadgram statistics from \texttt{english\_quadgrams.txt}. That file has one quadgram and its count on each line, for example \texttt{TION 13168375}. A quadgram is four consecutive letters. The score of one quadgram is the base-10 log of its share of the file:
+    \[
+    S(q)=\log_{10}\!\left(\frac{\mathrm{Count}(q)}{\mathrm{Total}}\right).
+    \]
+    The numbers below are only an illustration. Suppose the file contained just these rows and the counts summed to \(1{,}000{,}000\):
+
+    \begin{center}
+    \begin{tabular}{lr}
+    \hline
+    Quadgram & Count \\
+    \hline
+    \texttt{THER} & 100{,}000 \\
+    \texttt{HERE} & 50{,}000 \\
+    \texttt{XQZB} & 1 \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    \begin{align*}
+    S(\texttt{THER})&=\log_{10}(100{,}000/1{,}000{,}000)=\log_{10}(0.1)=-1,\\
+    S(\texttt{HERE})&=\log_{10}(50{,}000/1{,}000{,}000)=\log_{10}(0.05)\approx -1.301,\\
+    S(\texttt{XQZB})&=\log_{10}(1/1{,}000{,}000)=-6.
+    \end{align*}
+
+    \texttt{THER} is common English, so its score is closer to zero. \texttt{XQZB} is rare, so its score is much lower. The real file is used in the same way. For a candidate plaintext \(P\) of length \(n\), the program adds the score of every four-letter block:
+    \[
+    S(P)=\sum_{i=1}^{n-3}\log_{10}\Pr(P_i P_{i+1} P_{i+2} P_{i+3}).
+    \]
+    A block that is missing from the file gets a fixed penalty, \(\log_{10}(0.01/\mathrm{Total})\), about \(-11.6\) for this file. Every term is negative because each probability is below 1, so the total is negative. A larger total, closer to zero, means the decryption looks more like English. On this 300-letter ciphertext, gibberish scores near \(-1800\) and the correct English scores near \(-1336\).
+
+    Simulated annealing searches for a key with a high score. One run starts from a random \(5\times 5\) matrix, or from the alphabetical matrix on the first run. It then proposes a new key by a random edit: with probability \(90\%\) it swaps two letters, with probability \(4\%\) it swaps two rows, with probability \(4\%\) it swaps two columns, and with probability \(2\%\) it shuffles four letters. The new key is decrypted and scored. A higher score is always kept. A lower score is kept with probability
+    \[
+    \Pr(\text{accept})=\exp\!\left(\frac{S_{\mathrm{new}}-S_{\mathrm{old}}}{T}\right),
+    \]
+    where \(T\) is the temperature. \(T\) starts at 12 and drops by \(0.5\) after every \(2500\) edits, down to 0. Early on, a worse key is sometimes accepted, so the search can leave a poor matrix. Later it mostly keeps improvements. The code repeats this from a new starting matrix up to 12 times and stops when a score rises above \(-1500\). That cutoff sits between gibberish and readable English. One successful run is enough. The run in the figure reached the best score on attempt 4 of 12, after about one minute.
+
+    \begin{center}
+        \includegraphics[width=\linewidth]{Playfair.png}
+    \end{center}
+
+    The best score is \(-1335.86\). The key, written row by row, is \texttt{XAYLVIWDKGPCNZTFQOEUHRBMS}:
+
+    \begin{center}
+    \begin{tabular}{ccccc}
+    X & A & Y & L & V \\
+    I & W & D & K & G \\
+    P & C & N & Z & T \\
+    F & Q & O & E & U \\
+    H & R & B & M & S \\
+    \end{tabular}
+    \end{center}
+
+    The decryption begins \texttt{CHARIZARDSOARS}. The \texttt{X}s are the fillers Playfair inserts between doubled letters, such as \texttt{FREXEDOM} for FREEDOM and \texttt{BEGINXNINGS} for BEGINNINGS. Removing those fillers gives the description of Charizard. Encrypting this plaintext with the same matrix returns line 1.
+
+    \smallskip
+    {\scriptsize\ttfamily\seqsplit{CHARIZARDSOARSWITHCONFIDENCEANDPOWERXREPRESENTINGFREXEDOMANDTRANSFORMATIONITSWINGSCARXRYITACROSXSXSKIESWHILEITSFLAMEXEMBODIESXSTRENGTHANDRESILIENCECHARIZARDSHOWSTHECULMINATIONOFGROWTHFROMHUMBLEBEGINXNINGSINTOAFORMOFINDEPENDENCEANDPRIDEYETITALSOREMINDSUSTHATXTRUESTRENGTHINCLUDESRESPONSIBILITYITSPRESE}}
+
+    \medskip
+    The same plaintext can be checked with a Playfair Analyzer search. That run was allowed to test \(400{,}000{,}000\) keys, the limit set in the tool, out of the \(1.55\times 10^{25}\) possible matrices. It finished in 20 minutes 21 seconds and decrypted the ciphertext to the same Charizard text. Its reported key, \texttt{MSHRBLVXAYKGIWDZTPCNEUFQO}, is the matrix above shifted by whole rows and whole columns. That shift does not change Playfair encryption, so the two keys are the same square.
+
+    \begin{center}
+        \includegraphics[width=\linewidth]{Playfair_Brute.jpg}
+    \end{center}
 
     \bigskip
     \textbf{OTP (first line):} line 3, Growlithe
