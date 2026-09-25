@@ -18,7 +18,7 @@ QUADGRAM_PATH = Path(__file__).with_name("english_quadgrams.txt")
 # Simulated annealing. Quadgram scores are sums of log10 probabilities.
 # On this 300-letter text, gibberish scores near -2000 and English near
 # -1340, so T = 50 accepts almost every worse key. T = 12 matches that scale.
-TEMPERATURE = 12.0
+TEMPERATURE = 30.0
 COOLING = 0.5
 ITERATIONS = 2500
 RESTARTS = 12
